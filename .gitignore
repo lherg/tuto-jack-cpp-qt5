@@ -53,3 +53,7 @@ dkms.conf
 
 # build
 build/
+
+# Qt5
+*.stash
+Makefile
