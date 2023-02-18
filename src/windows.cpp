@@ -13,10 +13,12 @@ int process(jack_nframes_t nframes, void* data) {
     sample_t* out_l = static_cast<sample_t*>(jack_port_get_buffer(widget->out_l, nframes));
     sample_t* out_r = static_cast<sample_t*>(jack_port_get_buffer(widget->out_r, nframes));
 
+    widget->enabled_mutex.lock();
     for (unsigned int i = 0; i < nframes; ++i) {
         out_l[i] = widget->gain * in_l[i];
         out_r[i] = widget->gain * in_r[i];
     }
+    widget->enabled_mutex.unlock();
 
     return 0;
 }

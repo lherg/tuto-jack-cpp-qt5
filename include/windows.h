@@ -21,7 +21,8 @@ class Widget : public QWidget
         jack_port_t * out_r;
 
         std::atomic<float> gain;
-
+        std::mutex enabled_mutex;
+        
         Widget(QWidget *parent = nullptr);
         ~Widget();
 
